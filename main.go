@@ -8,15 +8,16 @@ import (
 
 func main() {
 	port := "9000"
-	var dir string
+	dir := "."
 	switch len(os.Args) {
 	case 3:
 		port = os.Args[1]
 		dir = os.Args[2]
 	case 2:
 		dir = os.Args[1]
+	case 1:
 	default:
-		log.Fatal("Incorrect number of arguments. Need \"[port] directory\"")
+		log.Fatal("Incorrect number of arguments. Need \"[[port] directory]\"")
 	}
 
 	http.Handle("/", http.FileServer(http.Dir(dir)))
